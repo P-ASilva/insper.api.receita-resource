@@ -1,0 +1,1 @@
+# insper.api.receita-resource
