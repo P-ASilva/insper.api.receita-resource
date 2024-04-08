@@ -68,16 +68,15 @@ public class ReceitasResource implements ReceitasController {
 
     @Override
     public ResponseEntity<ReceitaOut> get(String id) {
-        // final ReceitaOut receita = receitasService.get(id);
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
-        // return ResponseEntity.ok(receita);
+        final ReceitaOut receita = ReceitasParser.to(receitasService.get(id));
+        //throw new UnsupportedOperationException("Unimplemented method 'get'");
+        return ResponseEntity.ok(receita);
     }
 
-
     @Override
-    public ResponseEntity<ReceitaOut> read() {
-        // final ReceitaOut receitas = receitasService.read();
-        throw new UnsupportedOperationException("Unimplemented method 'read'");
-        // return ResponseEntity.ok(receitas);
+    public ResponseEntity<List<ReceitaOut>> read() {
+        final List<ReceitaOut> receitas = receitasService.read();
+        //throw new UnsupportedOperationException("Unimplemented method 'read'");
+        return ResponseEntity.ok(receitas);
     }
 }

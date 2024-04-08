@@ -9,6 +9,13 @@ public class ReceitasParser {
             .build();
     }
 
+    public static Receita to(ReceitaOut in) {
+        return Receita.builder()
+            .id(in.id())
+            .name(in.name())
+            .build();
+    }
+
     public static ReceitaOut to(Receita receita) {
         return ReceitaOut.builder()
             .id(receita.id())

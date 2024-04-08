@@ -3,7 +3,9 @@ package insper.api.receitas;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,10 +24,11 @@ public class ReceitasService {
 
     public Receita get(@NonNull String id) {
         return receitasRepository.findById(id).map(ReceitaModel::to).orElse(null);
-    }    
+    }
 
-    public Receita read() {
-        return null;
-        // return receitasRepository.findAll().map(ReceitaModel::to).orElse(null);
+    public List<ReceitaOut> read() {
+        List<ReceitaOut> receitas = new ArrayList<>();
+        receitasRepository.findAll().forEach(receita -> receitas.add(ReceitasParser.to(receita.to())));
+        return receitas;
     }    
 }
