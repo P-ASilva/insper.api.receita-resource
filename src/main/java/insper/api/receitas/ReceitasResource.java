@@ -76,6 +76,9 @@ public class ReceitasResource implements ReceitasController {
     @Override
     public ResponseEntity<List<ReceitaOut>> read() {
         final List<ReceitaOut> receitas = receitasService.read();
+        
+
+
         //throw new UnsupportedOperationException("Unimplemented method 'read'");
         return ResponseEntity.ok(receitas);
     }

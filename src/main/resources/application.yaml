@@ -11,11 +11,11 @@ spring:
     driver-class-name: org.postgresql.Driver
   flyway:
     baseline-on-migrate: true
-    schemas: receita
+    schemas: receitas
   jpa:
     properties:
       hibernate:
-        default_schema: receita
+        default_schema: receitas
 
 eureka:
   client:
