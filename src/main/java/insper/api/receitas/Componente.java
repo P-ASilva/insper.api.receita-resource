@@ -13,8 +13,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor @NoArgsConstructor
 public class Componente {
     private String id;
-    private String id_receita;
-    private String id_ingrediente;
+    private String receita;
+    private String ingrediente;
     private int qtd;
-
 }

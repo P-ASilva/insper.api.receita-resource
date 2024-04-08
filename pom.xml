@@ -42,7 +42,20 @@
 			<artifactId>receitas</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>insper.api</groupId>
+			<artifactId>ingrediente</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>insper.api</groupId>
+			<artifactId>ingredientes-resource</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>

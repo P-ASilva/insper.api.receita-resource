@@ -1,8 +1,5 @@
 package insper.api.receitas;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +15,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 @Entity
-@Table(name = "componente")
+@Table(name="componente")
 @EqualsAndHashCode(of = "id")
 @Builder @Getter @Setter @Accessors(chain = true, fluent = true)
 @NoArgsConstructor @AllArgsConstructor
@@ -29,26 +26,26 @@ public class ComponenteModel {
     @Column(name = "id_componente")
     private String id;
     
-    @Column(name = "id_receita")
-    private String id_receita;
+    @Column(name = "Id_receita")
+    private String receita;
 
     @Column(name = "id_ingrediente")
-    private String id_ingrediente;
+    private String ingrediente;
     @Column(name = "qtd")
     private Integer qtd;
 
     public ComponenteModel(Componente o) {
         this.id = o.id();
-        this.id_receita = o.id_receita();
-        this.id_ingrediente = o.id_ingrediente();
+        this.receita = o.receita();
+        this.ingrediente = o.ingrediente();
         this.qtd = o.qtd();
     }
     
     public Componente to() {
         return Componente.builder()
             .id(id)
-            .id_receita(id_receita)
-            .id_ingrediente(id_ingrediente)
+            .receita(receita)
+            .ingrediente(ingrediente)
             .qtd(qtd)
             .build();
     }
