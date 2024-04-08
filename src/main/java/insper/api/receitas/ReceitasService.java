@@ -21,6 +21,9 @@ public class ReceitasService {
     @Autowired
     private ReceitasRepository receitasRepository;
 
+    @Autowired
+    private ComponenteRepository componenteRepository;
+
     public Receita create(Receita in) {
         return receitasRepository.save(new ReceitaModel(in)).to();
     }
@@ -39,7 +42,17 @@ public class ReceitasService {
         return receitasRepository.save(new ReceitaModel(in)).to();
     }
 
-    public Receita getIngredientes(@NonNull String id) {
-        return receitasRepository.findById(id).map(ReceitaModel::to).orElse(null);
+    public ComponenteModel getQuantidadeIngrediente(@NonNull String id, @NonNull String idIngrediente) {
+        return componenteRepository.findByIdReceitaAndIdIngrediente(id, idIngrediente);
     }
+
+    public List<ComponenteModel> getIngredientes(@NonNull String id) {
+        return componenteRepository.findByIdReceita(id);
+    }
+
+    public List<ComponenteModel> getReceitas(@NonNull String idIngrediente) {
+        return componenteRepository.findByIdIngrediente(idIngrediente);
+    }
+
+
 }

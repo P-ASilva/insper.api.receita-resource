@@ -82,5 +82,10 @@ public class ReceitasResource implements ReceitasController {
     }
 
 
+    @Override
+    public int getQuantidadeIngrediente(String id, String idIngrediente) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getQuantidadeIngrediente'");
+    }
 
 }
