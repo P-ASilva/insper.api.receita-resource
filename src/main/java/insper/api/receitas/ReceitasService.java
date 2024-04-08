@@ -30,5 +30,5 @@ public class ReceitasService {
         List<ReceitaOut> receitas = new ArrayList<>();
         receitasRepository.findAll().forEach(receita -> receitas.add(ReceitasParser.to(receita.to())));
         return receitas;
-    }    
+    }
 }

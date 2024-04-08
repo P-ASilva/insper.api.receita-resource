@@ -11,9 +11,10 @@ import lombok.experimental.Accessors;
 @Builder
 @Getter @Setter @Accessors(fluent = true, chain = true)
 @AllArgsConstructor @NoArgsConstructor
-public class Receita {
+public class Componente {
     private String id;
-    private String name;
-    private String creator_id;
-    // private Componente[] componentes;
+    private String id_receita;
+    private String id_ingrediente;
+    private int qtd;
+
 }
