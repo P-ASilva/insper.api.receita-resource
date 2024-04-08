@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import lombok.NonNull;
 
+import insper.api.ingrediente.IngredienteIn;
+import insper.api.ingrediente.IngredienteOut;
+
 @Service
 public class ReceitasService {
 
@@ -30,5 +33,13 @@ public class ReceitasService {
         List<ReceitaOut> receitas = new ArrayList<>();
         receitasRepository.findAll().forEach(receita -> receitas.add(ReceitasParser.to(receita.to())));
         return receitas;
-    }    
+    }
+
+    public Receita update(@NonNull String id, Receita in) {
+        return receitasRepository.save(new ReceitaModel(in)).to();
+    }
+
+    public Receita getIngredientes(@NonNull String id) {
+        return receitasRepository.findById(id).map(ReceitaModel::to).orElse(null);
+    }
 }

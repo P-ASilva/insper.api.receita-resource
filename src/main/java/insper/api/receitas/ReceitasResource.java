@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import insper.api.ingrediente.IngredienteIn;
+import insper.api.ingrediente.IngredienteOut;
+
 @RestController
 public class ReceitasResource implements ReceitasController {
 
@@ -69,17 +72,15 @@ public class ReceitasResource implements ReceitasController {
     @Override
     public ResponseEntity<ReceitaOut> get(String id) {
         final ReceitaOut receita = ReceitasParser.to(receitasService.get(id));
-        //throw new UnsupportedOperationException("Unimplemented method 'get'");
         return ResponseEntity.ok(receita);
     }
 
     @Override
     public ResponseEntity<List<ReceitaOut>> read() {
         final List<ReceitaOut> receitas = receitasService.read();
-        
-
-
-        //throw new UnsupportedOperationException("Unimplemented method 'read'");
         return ResponseEntity.ok(receitas);
     }
+
+
+
 }
