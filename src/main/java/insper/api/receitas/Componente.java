@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-
 @Builder
 @Getter @Setter @Accessors(fluent = true, chain = true)
 @AllArgsConstructor @NoArgsConstructor
