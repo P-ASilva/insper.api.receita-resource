@@ -42,25 +42,6 @@ public class ReceitasResource implements ReceitasController {
         return ResponseEntity.ok(receitas);
     }
 
-
-    @Override
-    public int getQuantidadeIngrediente(String id, String idIngrediente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getQuantidadeIngrediente'");
-    }
-
-    @Override
-    public List<ComponentModel> getIngredientes(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getIngredientes'");
-    }
-
-    @Override
-    public List<ComponentModel> getReceitas(String idIngrediente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getReceitas'");
-    }
-
     @Override
     public ResponseEntity<ReceitaOut> update(String id, ReceitaIn in) {
         // parser
