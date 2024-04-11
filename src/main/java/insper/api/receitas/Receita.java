@@ -15,5 +15,4 @@ public class Receita {
     private String id;
     private String name;
     private String creator_id;
-    // private Componente[] componentes;
 }

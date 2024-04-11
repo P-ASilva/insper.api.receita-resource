@@ -1,8 +1,5 @@
 package insper.api.receitas;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,7 +29,7 @@ public class ReceitaModel {
     @Column(name = "tx_name")
     private String name;
 
-    @Column(name = "creator_id")
+    @Column(name = "id_creator")
     private String creator_id;
 
     public ReceitaModel(Receita o) {

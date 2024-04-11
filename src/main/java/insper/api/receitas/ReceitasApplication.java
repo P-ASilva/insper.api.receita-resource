@@ -5,7 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@EnableFeignClients
+
+@EnableFeignClients(basePackages = {
+    "insper.api.ingrediente"
+})
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ReceitasApplication {
@@ -13,5 +16,4 @@ public class ReceitasApplication {
     public static void main(String[] args) {
         SpringApplication.run(ReceitasApplication.class, args);
     }
-    
 }

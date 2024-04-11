@@ -1,6 +1,3 @@
-server:
-  port: 0
-
 spring:
   application:
     name: api-receitas
@@ -11,18 +8,26 @@ spring:
     driver-class-name: org.postgresql.Driver
   flyway:
     baseline-on-migrate: true
-    schemas: receitas ### add component here
+    schemas: receita ### add component here
 
   jpa:
     properties:
       hibernate:
-        default_schema: receitas 
+        default_schema: receita
+
+management:
+  endpoints:
+    web:
+      base-path: /receitas/actuator
+      exposure:
+        include: [ 'prometheus' ]
+
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: ${EUREKA_URI:http://localhost:8762/eureka/}
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka/}
 
 springdoc:
   api-docs:

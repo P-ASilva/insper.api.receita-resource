@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import insper.api.ingrediente.IngredienteController;
+import insper.api.ingrediente.IngredienteOut;
 import lombok.NonNull;
 
 @Service
@@ -16,13 +18,42 @@ public class ReceitasService {
     @Autowired
     private ComponenteRepository componenteRepository;
 
-    public Receita create(Receita in) {
-        return receitasRepository.save(new ReceitaModel(in)).to();
+    @Autowired
+    private IngredienteController ingredienteController;
+
+    public Receita create(Receita in, List<ComponenteDTO> componentes) {
+        Receita r = receitasRepository.save(new ReceitaModel(in)).to();
+        componentes.forEach(c ->
+            createComponente(c, r.id())
+        );
+        return r;
+    }
+    
+    public Componente createComponente(ComponenteDTO in, String id_receita) {
+        Componente c  = new Componente().ingrediente(in.ingrediente()).qnt(in.qnt()).receita(id_receita);
+        if (c.id() != null) {
+            return componenteRepository.save(new ComponenteModel(c)).to();
+        } else {
+            // throw new NullPointerException();
+            System.err.println(c);
+            return null;
+        }  
     }
 
     public Receita get(@NonNull String id) {
         return receitasRepository.findById(id).map(ReceitaModel::to).orElse(null);
     }
+
+    public List<ComponenteDTO> getComponentes(@NonNull String id) {
+        List<ComponenteDTO> componentes = new ArrayList<>();
+        componenteRepository.findAllByReceita(id).forEach(componente -> componentes.add(componente.to().dto()));
+        return componentes;
+    }
+
+    public Receita update(@NonNull String id) {
+        return receitasRepository.findById(id).get().to();
+    }
+
 
     public List<ReceitaOut> read() {
         List<ReceitaOut> receitas = new ArrayList<>();
@@ -30,21 +61,11 @@ public class ReceitasService {
         return receitas;
     }
 
-    public Receita update(@NonNull String id, Receita in) {
-        return receitasRepository.save(new ReceitaModel(in)).to();
+    public List<IngredienteOut> readAllIngredientes(@NonNull String id_receita) {
+        List<IngredienteOut> ingredientes = new ArrayList<>();
+        componenteRepository.findAllByReceita(id_receita).forEach(
+            comp-> ingredientes.add(ingredienteController.read(comp.ingrediente()).getBody())
+        );
+        return ingredientes;
     }
-
-    public ComponenteModel getQuantidadeIngrediente(@NonNull String id, @NonNull String idIngrediente) {
-        return componenteRepository.findByIdReceitaAndIdIngrediente(id, idIngrediente);
-    }
-
-    public List<ComponenteModel> getIngredientes(@NonNull String id) {
-        return componenteRepository.findByIdReceita(id);
-    }
-
-    public List<ComponenteModel> getReceitas(@NonNull String idIngrediente) {
-        return componenteRepository.findByIdIngrediente(idIngrediente);
-    }
-
-
 }
