@@ -6,8 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-
 @RestController
 public class ReceitasResource implements ReceitasController {
 
@@ -15,8 +13,15 @@ public class ReceitasResource implements ReceitasController {
     private ReceitasService receitasService;
 
     @Override
-    public ResponseEntity<ReceitaOut> create(@RequestBody ReceitaRequest r) {
-        System.err.println(r);
+    public ResponseEntity<ReceitaOut> create(ReceitaRequest r) {
+        // System.err.println(r.in().name());
+        // System.err.println(r.componentes());
+        // r.componentes().forEach(comp -> {
+        //     System.err.println(comp.ingrediente());
+        //     System.err.println(comp.qnt());
+        // });
+        
+
         // parser
         Receita receita = ReceitasParser.to(r.in());
         // insert using service
@@ -40,6 +45,11 @@ public class ReceitasResource implements ReceitasController {
     @Override
     public ResponseEntity<ReceitaOutContent> getComponentes(String id) {
         final List<ComponenteDTO> componentes = receitasService.getComponentes(id);
+        
+        // componentes.forEach(comp -> {
+        //     System.err.println(comp.ingrediente);
+        //     System.err.println(comp.qnt);
+        // });
         final ReceitaOut receita = ReceitasParser.to(receitasService.get(id));
         return  ResponseEntity.ok(new ReceitaOutContent(receita, componentes));
     }
@@ -47,7 +57,6 @@ public class ReceitasResource implements ReceitasController {
     @Override
     public ResponseEntity<List<ReceitaOut>> read() {
         final List<ReceitaOut> receitas = receitasService.read();
-        //throw new UnsupportedOperationException("Unimplemented method 'read'");
         return ResponseEntity.ok(receitas);
     }
 

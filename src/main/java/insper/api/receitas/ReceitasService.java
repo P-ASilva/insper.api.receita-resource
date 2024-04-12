@@ -35,7 +35,8 @@ public class ReceitasService {
             return componenteRepository.save(new ComponenteModel(c)).to();
         } else {
             // throw new NullPointerException();
-            System.err.println(c);
+            // System.err.println(in.ingrediente());
+            // System.err.println(in.qnt());
             return null;
         }  
     }
@@ -46,7 +47,9 @@ public class ReceitasService {
 
     public List<ComponenteDTO> getComponentes(@NonNull String id) {
         List<ComponenteDTO> componentes = new ArrayList<>();
+        // System.err.println(componenteRepository.findAllByReceita(id));
         componenteRepository.findAllByReceita(id).forEach(componente -> componentes.add(componente.to().dto()));
+
         return componentes;
     }
 
