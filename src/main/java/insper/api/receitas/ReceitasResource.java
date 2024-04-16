@@ -14,13 +14,10 @@ public class ReceitasResource implements ReceitasController {
 
     @Override
     public ResponseEntity<ReceitaOut> create(ReceitaRequest r) {
-        // System.err.println(r.in().name());
-        // System.err.println(r.componentes());
-        // r.componentes().forEach(comp -> {
-        //     System.err.println(comp.ingrediente());
-        //     System.err.println(comp.qnt());
-        // });
-        
+        System.err.println(r.in().name());
+        System.err.println(r.componentes());
+        for (ComponenteDTO c : r.componentes() )
+            System.out.println(c.ingrediente() + " " + c.qnt());
 
         // parser
         Receita receita = ReceitasParser.to(r.in());
