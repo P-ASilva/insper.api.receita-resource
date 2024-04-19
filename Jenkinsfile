@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build Receita') {
             steps {
-                build job: 'api.receitas-resource', wait: true
+                build job: 'api.receitas', wait: true
             }
         }
         stage('Build') { 
