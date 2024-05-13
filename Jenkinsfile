@@ -6,6 +6,11 @@ pipeline {
                 build job: 'api.receitas', wait: true
             }
         }
+        stage('Build Ingrediente') {
+            steps {
+                build job: 'api.ingrediente', wait: true
+            }
+        }
         stage('Build') { 
             steps {
                 sh 'mvn clean package'
