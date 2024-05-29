@@ -36,7 +36,10 @@
 			<artifactId>receitas</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>insper.api</groupId>
 			<artifactId>ingrediente</artifactId>
