@@ -1,14 +1,14 @@
 pipeline {
     agent any
     stages {
+        stage('Build Ingrediente') {
+            steps {
+                build job: 'api.ingredientes', wait: true
+            }
+        }
         stage('Build Receita') {
             steps {
                 build job: 'api.receitas', wait: true
-            }
-        }
-        stage('Build Ingrediente') {
-            steps {
-                build job: 'api.ingrediente', wait: true
             }
         }
         stage('Build') { 
@@ -19,7 +19,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    receita = docker.build("pasilva2023/receita:${env.BUILD_ID}", "-f Dockerfile .")
+                    receita = docker.build("pasilva2023/receitas:${env.BUILD_ID}", "-f Dockerfile .")
                 }
             }
         }

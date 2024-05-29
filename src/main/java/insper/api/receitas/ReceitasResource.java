@@ -38,15 +38,21 @@ public class ReceitasResource implements ReceitasController {
         final ReceitaOut receita = ReceitasParser.to(receitasService.get(id));
         return ResponseEntity.ok(receita);
     }
+ 
+    @Override
+    public ResponseEntity<ReceitaOutContent> addComponente(String id, ComponenteDTO componenteDTO) {
+        receitasService.createComponente(id, componenteDTO);
+        // maye remove later
+        final List<ComponenteDTO> componentes = receitasService.getComponentes(id);
+        final ReceitaOut receita = ReceitasParser.to(receitasService.get(id));
+
+        return  ResponseEntity.ok(new ReceitaOutContent(receita, componentes));
+    }
 
     @Override
     public ResponseEntity<ReceitaOutContent> getComponentes(String id) {
+
         final List<ComponenteDTO> componentes = receitasService.getComponentes(id);
-        
-        // componentes.forEach(comp -> {
-        //     System.err.println(comp.ingrediente);
-        //     System.err.println(comp.qnt);
-        // });
         final ReceitaOut receita = ReceitasParser.to(receitasService.get(id));
         return  ResponseEntity.ok(new ReceitaOutContent(receita, componentes));
     }

@@ -29,18 +29,12 @@ public class ReceitasService {
         return r;
     }
     
-    public Componente createComponente(ComponenteDTO in, String id_receita) {
+    public Componente createComponente(@NonNull String id_receita, ComponenteDTO in) {
         Componente c  = new Componente().ingrediente(in.ingrediente()).qnt(in.qnt()).receita(id_receita);
-        if (c.id() != null) {
-            return componenteRepository.save(new ComponenteModel(c)).to();
-        } else {
-            // throw new NullPointerException();
-            // System.err.println(in.ingrediente());
-            // System.err.println(in.qnt());
-            return null;
-        }  
-    }
 
+        return componenteRepository.save(new ComponenteModel(c)).to(); 
+    }
+    
     public Receita get(@NonNull String id) {
         return receitasRepository.findById(id).map(ReceitaModel::to).orElse(null);
     }
